@@ -1,0 +1,1344 @@
+{
+	"info": {
+		"_postman_id": "836ccb2e-0e07-4a04-9f93-fced63acd1b5",
+		"name": "API Currency",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25679108"
+	},
+	"item": [
+		{
+			"name": "Positive tests",
+			"item": [
+				{
+					"name": "Access code test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "No API key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List of Currencies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Currency Existence\", function () {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var currencies = responseBody.currencies;\r",
+									"    var targetCurrency = \"USD\"; \r",
+									"    var currencyExists = true;\r",
+									"\r",
+									"    for (var currency in currencies) {\r",
+									"        if (currency === targetCurrency) {\r",
+									"            currencyExists = true;\r",
+									"            break;\r",
+									"        }\r",
+									"    }\r",
+									"\r",
+									"    pm.expect(currencyExists).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency USD-RUB",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDRUB value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 80.2503;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDRUB).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=RUB",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "RUB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency USD-EUR",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDEUR value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 0.93282;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDEUR).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=EUR",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency USD-CAD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.35807;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=CAD",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "CAD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency USD-ILS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDILS value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 3.729345;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDILS).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=ILS",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "ILS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RUB,CAD,EUR,ILS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDRUB value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 80.24998;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDRUB).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.35818;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDEUR value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 0.9328;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDEUR).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDILS value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 3.729345;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDILS).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=RUB,CAD,EUR,ILS",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "RUB,CAD,EUR,ILS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RUB,CAD,EUR",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDRUB value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 80.24998;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDRUB).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.35818;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDEUR value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 0.9328;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDEUR).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=RUB,CAD,EUR",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "RUB,CAD,EUR"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RUB,CAD,EUR,ILS (%,endpoint)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDRUB value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 80.24998;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDRUB).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.35818;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDEUR value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 0.9328;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDEUR).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDILS value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 3.729345;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDILS).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=EUR%2CRUB%2CCAD%2CILS",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR%2CRUB%2CCAD%2CILS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historical rate USD-EUR,RUB,CAD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDRUB value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 27.902779;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDRUB).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.488263;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDEUR value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.104144;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDEUR).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/historical?date=2000-08-06&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=EUR,RUB,CAD",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"historical"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2000-08-06"
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR,RUB,CAD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historical rate USD-EUR,RUB,CAD (% endpoint)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDRUB value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 27.902779;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDRUB).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.488263;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDEUR value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.104144;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDEUR).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/historical?date=2000-08-06&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=EUR%2CRUB%2CCAD",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"historical"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2000-08-06"
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR%2CRUB%2CCAD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historical rate USD-CAD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"USDCAD value should match\", function() {\r",
+									"     var responseBody = pm.response.json();\r",
+									"    var expectedValue = 1.35807;\r",
+									"    var tolerance = 0.250;\r",
+									"    pm.expect(responseBody.quotes.USDCAD).to.be.closeTo(expectedValue, tolerance);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/historical?date=2000-08-06&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=CAD",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"historical"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2000-08-06"
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "CAD"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative tests",
+			"item": [
+				{
+					"name": "Access code test -not valid key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(401);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Access code\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"Invalid authentication credentials\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn5",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "No API key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(401);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"No API Key\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"No API key found in request\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historical rate USD-RUB-Missing Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Historical rate. Missing Date\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"You have not specified a date. [Required format: date=YYYY-MM-DD]\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/historical?date=&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=EUR",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"historical"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": ""
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Historical rate USD-EUR,RUB,CAD- Not valid date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(200);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Historical rate. Not valid Date\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"You have entered an invalid date. [Required format: date=YYYY-MM-DD]\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/historical?date=2023-03-09&apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=EUR,RUB,CAD",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"historical"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2023-03-09"
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR,RUB,CAD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Currency USD-USD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(401);\r",
+									"\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Currency USD-USD\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"Invalid authentication credentials\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?apikey=yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK&source=USD&currencies=USD",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "USD"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RUB,CAD,EUR,ILS (%,endpoint) Not correct API Key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(401);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\" Not correct API Key\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"Invalid authentication credentials\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?&apikey=yNbVDrCKFKDkL6UUcf4C2ciWn53lK&source=USD&currencies=EUR%2CRUB%2CCAD%2CILS",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "apikey",
+									"value": "yNbVDrCKFKDkL6UUcf4C2ciWn53lK"
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR%2CRUB%2CCAD%2CILS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RUB,CAD,EUR,ILS (%,endpoint) Missing API key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code test\", function(){\r",
+									"pm. response.to.have.status(401);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\" Missing API key\", function(){\r",
+									"pm.expect(pm.response.text()).to.include(\"No API key found in request\");\r",
+									"\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.apilayer.com/currency_data/live?&apikey=&source=USD&currencies=EUR%2CRUB%2CCAD%2CNIS",
+							"protocol": "https",
+							"host": [
+								"api",
+								"apilayer",
+								"com"
+							],
+							"path": [
+								"currency_data",
+								"live"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "apikey",
+									"value": ""
+								},
+								{
+									"key": "source",
+									"value": "USD"
+								},
+								{
+									"key": "currencies",
+									"value": "EUR%2CRUB%2CCAD%2CNIS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "API_key",
+			"value": "yNbVDrCKFKDkL6KqfUUcf4C2ciWn890"
+		}
+	]
+}
